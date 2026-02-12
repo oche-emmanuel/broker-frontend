@@ -29,7 +29,8 @@ const ChatWidget = () => {
         if (!user) return;
 
         // Connect to socket
-        socketRef.current = io('http://localhost:5000', {
+        const socketUrl = import.meta.env.VITE_API_URL?.replace('/api', '') || 'https://broker-backend-vm3w.onrender.com';
+        socketRef.current = io(socketUrl, {
             query: { userId: user._id }
         });
 
